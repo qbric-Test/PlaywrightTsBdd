@@ -1,0 +1,62 @@
+{
+  "name": "playwright-ts-bdd",
+  "version": "1.0.0",
+  "description": "Playwright + TypeScript + Cucumber BDD automation framework using Page Object Model",
+  "main": "index.js",
+  "private": true,
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "clean": "rimraf reports test-results",
+    "pretest": "npm run clean",
+    "test": "cucumber-js --config cucumber.js",
+    "test:chrome": "cross-env BROWSER=chromium cucumber-js --config cucumber.js",
+    "test:firefox": "cross-env BROWSER=firefox cucumber-js --config cucumber.js",
+    "test:webkit": "cross-env BROWSER=webkit cucumber-js --config cucumber.js",
+    "test:headed": "cross-env HEADLESS=false cucumber-js --config cucumber.js",
+    "test:headless": "cross-env HEADLESS=true cucumber-js --config cucumber.js",
+    "test:olx": "cucumber-js --config cucumber.js --tags @olx",
+    "test:walmart": "cross-env HEADLESS=false cucumber-js --config cucumber.js --tags @walmart",
+    "test:smoke": "cucumber-js --config cucumber.js --tags @smoke",
+    "test:regression": "cucumber-js --config cucumber.js --tags @regression",
+    "test:parallel": "cucumber-js --config cucumber.js --parallel 4",
+    "test:serial": "cucumber-js --config cucumber.js --parallel 0",
+    "report:open": "node -e \"require('child_process').exec((process.platform==='win32'?'start ':'open ')+'reports/cucumber-report.html')\"",
+    "trace:show": "playwright show-trace",
+    "install:browsers": "playwright install --with-deps",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint . --ext .ts",
+    "lint:fix": "eslint . --ext .ts --fix",
+    "format": "prettier --write \"**/*.{ts,json,md,js}\"",
+    "format:check": "prettier --check \"**/*.{ts,json,md,js}\""
+  },
+  "keywords": [
+    "playwright",
+    "typescript",
+    "cucumber",
+    "bdd",
+    "page-object-model",
+    "automation"
+  ],
+  "author": "Qbric",
+  "license": "MIT",
+  "devDependencies": {
+    "@cucumber/cucumber": "^11.2.0",
+    "@cucumber/pretty-formatter": "^1.0.1",
+    "@playwright/test": "^1.50.1",
+    "@types/node": "^22.13.1",
+    "@typescript-eslint/eslint-plugin": "^8.23.0",
+    "@typescript-eslint/parser": "^8.23.0",
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.4.7",
+    "eslint": "^8.57.1",
+    "eslint-config-prettier": "^10.0.1",
+    "eslint-plugin-prettier": "^5.2.3",
+    "prettier": "^3.4.2",
+    "rimraf": "^6.0.1",
+    "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^5.7.3"
+  }
+}
